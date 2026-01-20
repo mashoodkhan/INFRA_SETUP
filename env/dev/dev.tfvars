@@ -6,11 +6,9 @@ private_subnets  = ["10.0.11.0/24", "10.0.12.0/24"]
 
 alb_name = "EA-ALB"
 target_group_name="EA-alb-Backend-DEV-tg"
-
-
 cluster_name     = "platform-dev-ecs"
 service_name     = "java-app-service-v2"
 task_name        = "java-app-task-v2"
 
-image            = "224193574260.dkr.ecr.us-east-1.amazonaws.com/devops-final-project/javaapp:v1.0"
+image            = "add your image here"
 desired_count    = 1
