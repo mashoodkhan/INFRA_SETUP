@@ -10,5 +10,5 @@ cluster_name     = "platform-dev-ecs"
 service_name     = "java-app-service-v2"
 task_name        = "java-app-task-v2"
 
-image            = "add your image here"
+image            = "enter image url here"
 desired_count    = 1
