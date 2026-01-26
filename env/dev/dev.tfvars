@@ -9,5 +9,5 @@ eks_cluster_name = "platform-dev-eks"
 eks_cluster_version = 1.29
 service_name     = "java-app-service-v2"
 task_name        = "java-app-task-v2"
-image            = "224193574260.dkr.ecr.us-east-1.amazonaws.com/devops-final-project/javaapp:v1.0"
+image            = "your image uri here"
 desired_count    = 1
