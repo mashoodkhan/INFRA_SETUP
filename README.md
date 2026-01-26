@@ -11,6 +11,8 @@ Makesure you have installed AWS CLI and configured AWS account with your access 
 
 Build Docker image first and push to AWS ECR
 
+To Deploy this app on ECS : 
+
 Refer this repo : https://github.com/mashoodkhan/Java-App.git
 
 All you need to do is clone above repositoryI
@@ -43,6 +45,21 @@ That's it will create complelete infastructure needed to deploy above java app
 Now you can go to AWS Console --> Load Balancers --> Copy DNS Name and enter it in browser.
 
 JAVA APP WILL BE LIVE
+
+To Create EKS Cluster : 
+Modules are exists in below location :
+cd /workspaces/INFRA_SETUP/env/dev/main.tf
+
+To create EKS Cluster : 
+If you want to create only eks cluster , then comment out ecs and alb modules in main.tf file located in root i;e INFRA_SETUP>main.tf var.tf output.tf
+
+Update your tfvars file accordingly like selecting region
+Enter commands : 
+Go to cd /workspaces/INFRA_SETUP/env/dev/dev.tfvars and run below commands
+
+terraform init
+terraform plan -var-file=tfvars
+terraform apply -var-file=tfvars --auto-approve
 
 
 

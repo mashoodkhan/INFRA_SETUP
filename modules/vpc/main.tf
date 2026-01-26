@@ -132,4 +132,51 @@ resource "aws_vpc_endpoint" "s3" {
   ]
 }
 
+resource "aws_vpc_endpoint" "eks" {
+  vpc_id              = aws_vpc.this.id
+  service_name        = "com.amazonaws.us-east-1.eks"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private[*].id
+  security_group_ids  = [aws_security_group.vpce_sg.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "ec2" {
+  vpc_id              = aws_vpc.this.id
+  service_name        = "com.amazonaws.us-east-1.ec2"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private[*].id
+  security_group_ids  = [aws_security_group.vpce_sg.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "autoscaling" {
+  vpc_id              = aws_vpc.this.id
+  service_name        = "com.amazonaws.us-east-1.autoscaling"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private[*].id
+  security_group_ids  = [aws_security_group.vpce_sg.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "elb" {
+  vpc_id              = aws_vpc.this.id
+  service_name        = "com.amazonaws.us-east-1.elasticloadbalancing"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private[*].id
+  security_group_ids  = [aws_security_group.vpce_sg.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "kms" {
+  vpc_id              = aws_vpc.this.id
+  service_name        = "com.amazonaws.us-east-1.kms"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private[*].id
+  security_group_ids  = [aws_security_group.vpce_sg.id]
+  private_dns_enabled = true
+}
+
+
+
 
