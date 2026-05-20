@@ -53,7 +53,8 @@ resource "aws_iam_role_policy_attachment" "node_policy" {
   for_each = toset([
     "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
     "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+    "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
   ])
 
   policy_arn = each.value
@@ -67,6 +68,7 @@ resource "aws_eks_node_group" "main" {
   node_group_name = each.key
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.private_subnets
+  ami_type = "AL2_x86_64"
 
   instance_types = each.value.instance_types
   capacity_type  = each.value.capacity_type

@@ -10,17 +10,43 @@ resource "aws_vpc" "this" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
 
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
   tags = {
     Name = "EA-private-rt"
   }
 }
-
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.this.id
   tags = {
     Name="EA-VPC-igw"
   }
+}
+
+resource "aws_eip" "nat" {
+  domain = "vpc"
+
+  tags = {
+    Name = "EA-NAT-EIP"
+  }
+}
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+
+  subnet_id = aws_subnet.public[0].id
+
+  tags = {
+    Name = "EA-NAT-Gateway"
+  }
+
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
 }
 
 data "aws_availability_zones" "available" {}
