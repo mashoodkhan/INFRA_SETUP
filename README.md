@@ -13,7 +13,7 @@ Build Docker image first and push to AWS ECR
 
 To Deploy this app on ECS : 
 
-Refer this repo : https://github.com/mashoodkhan/Java-App.git
+Repo Link : https://github.com/mashoodkhan/Java-App.git
 
 All you need to do is clone above repositoryI
 
